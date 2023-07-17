@@ -13,36 +13,34 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-   
-    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-md">
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
         <div class="container">
-          <a class="navbar-brand" href="/">Webflix</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" href="/">Accueil</a>
-                <a class="nav-link" href="/fiorella">Fiorella</a>
-                <a class="nav-link" href="/films">Films</a>
-                <a class="nav-link" href="/categories">Catégories</a>
-               {{--  @todo faire un dropdown --}}
-                {{-- <a class="nav-link"  href="/fiorella?color=blue">Fiorella bleue</a>
-                <a class="nav-link" href="/fiorella/emma">Fiorella et Emma</a>
-                <a class="nav-link" href="/fiorella/paul">Fiorella et Paul</a> --}}
-                <a class="nav-link" href="/a-propos">A propos</a>
-            </nav>
+            <a class="navbar-brand" href="/">Webflix</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" href="/">Accueil</a>
+                    <a class="nav-link" href="/fiorella">Fiorella</a>
+                    <a class="nav-link" href="/films">Films</a>
+                    <a class="nav-link" href="/categories">Catégories</a>
+                    <!-- @todo Faire un dropdown -->
+                    <!-- <a class="nav-link" href="/fiorella?color=blue">Fiorella bleue</a>
+                    <a class="nav-link" href="/fiorella/emma">Fiorella et Emma</a>
+                    <a class="nav-link" href="/fiorella/paul">Fiorella et Paul</a> -->
+                    <a class="nav-link" href="/a-propos">A propos</a>
+                </div>
             </div>
-          </div>
         </div>
-      </nav>
+    </nav>
 
- <div class="container py-5">
-    @yield('content')
- </div>
+    <div class="container py-5">
+        @yield('content')
+    </div>
 
     <footer class="py-5">
-       <p class="text-center"> {{ date('Y') }} - Webflix</p>
+        <p class="text-center">{{ date('Y') }} - Webflix</p>
     </footer>
 </body>
 </html>
