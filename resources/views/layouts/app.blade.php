@@ -8,21 +8,41 @@
             Webflix
         @show
     </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <nav>
-        <a href="/">Accueil</a>
-        <a href="/fiorella">Fiorella</a>
-        <a href="/fiorella?color=blue">Fiorella bleue</a>
-        <a href="/fiorella/emma">Fiorella et Emma</a>
-        <a href="/fiorella/paul">Fiorella et Paul</a>
-        <a href="/a-propos">A propos</a>
-    </nav>
+   
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-md">
+        <div class="container">
+          <a class="navbar-brand" href="/">Webflix</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" href="/">Accueil</a>
+                <a class="nav-link" href="/fiorella">Fiorella</a>
+                <a class="nav-link" href="/films">Films</a>
+                <a class="nav-link" href="/categories">Catégories</a>
+               {{--  @todo faire un dropdown --}}
+                {{-- <a class="nav-link"  href="/fiorella?color=blue">Fiorella bleue</a>
+                <a class="nav-link" href="/fiorella/emma">Fiorella et Emma</a>
+                <a class="nav-link" href="/fiorella/paul">Fiorella et Paul</a> --}}
+                <a class="nav-link" href="/a-propos">A propos</a>
+            </nav>
+            </div>
+          </div>
+        </div>
+      </nav>
 
+ <div class="container py-5">
     @yield('content')
+ </div>
 
-    <footer>
-        {{ date('Y') }}
+    <footer class="py-5">
+       <p class="text-center"> {{ date('Y') }} - Webflix</p>
     </footer>
 </body>
 </html>

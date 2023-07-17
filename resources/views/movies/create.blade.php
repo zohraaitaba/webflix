@@ -48,6 +48,7 @@
         <div>
             <label for="category">Catégorie</label>
             <select name="category" id="category">
+                <option disabled selected>Choisir une catégorie</option>
                 @foreach ($categories->sortBy('name') as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
