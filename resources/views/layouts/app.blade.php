@@ -32,7 +32,25 @@
                     <a class="nav-link" href="/a-propos">A propos</a>
                 </div>
                 <div class="navbar-nav">
+                    @auth {{-- si on est connecté --}}
+                            <div class="nav-item dropdown">
+                                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                                  <li><a class="dropdown-item" href="/mon-compte">Mon compte</a></li>
+                                  {{-- <li><a class="dropdown-item" href="/logout">Déconnexion</a></li> --}}
+                                  <form action="/logout" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="dropdown-item">Déconnexion</button>
+                                </form>
+                                </ul>
+                            </div>
+                
+                    @else
                     <a class="nav-link" href="/login">Connexion</a>
+                    @endauth
                 </div>
             </div>
         </div>

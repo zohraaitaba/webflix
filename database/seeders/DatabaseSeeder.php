@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
 
@@ -16,6 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        //Utilisateurs
+        User ::factory()->create([
+            'email' => 'fiorella@boxydev.com',
+            'name'=> 'fiorella',
+           
+        ]);
+        User ::factory()->create([
+            'email' => 'matthieu@boxydev.com',
+            'name'=> 'matthieu',
+           
+        ]);
+
         // Category::factory(5)->create();
         // Category::factory()->create(['name' => 'Action']);
 
@@ -50,6 +63,7 @@ class DatabaseSeeder extends Seeder
                 'released_at' => $result['release_date'],
                 'youtube' => $result['videos']['results'][0]['key'] ?? null,
                 'category_id' => $result['genres'][0]['id'] ?? null,
+                'user_id' => User::all()->random(),
             ]);
         }
 

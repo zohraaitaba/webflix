@@ -15,6 +15,12 @@ class Movie extends Model
         'released_at' => 'date',
     ];
 
+    
+  /* pour faire Movie::create(...), Attention PAS DE $request->all();
+            */
+    protected $guarded = [];
+
+
     public function duration(): Attribute
     {
         // in_array('toto', ['toto', 'titi']);
