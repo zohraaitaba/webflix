@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ActorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FiorellaFriendController;
 use App\Http\Controllers\HomeController;
@@ -43,6 +44,10 @@ Route::post('/films/creer', [MovieController::class, 'store'])->middleware('auth
 Route::post('/film/{movie}/modifier', [MovieController::class, 'edite'])->middleware('auth');
 Route::put('/film/{movie}/modifier', [MovieController::class, 'update'])->middleware('auth');
 Route::delete('/film/{id}', [MovieController::class, 'destroy'])->middleware('auth');
+
+//Acteurs
+Route::get('/acteurs', [ActorController::class, 'index']);
+Route::get('/acteurs/{actor}', [ActorController::class, 'show']);
 
 //Authentification
 Route::get('/login', [LoginController::class, 'index'])->name('login');

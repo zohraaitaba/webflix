@@ -3,7 +3,7 @@
 @section('content')
     <form action="" method="post" enctype="multipart/form-data">
         @csrf
-
+       
         <div>
             <label for="title">Titre</label>
             <input type="text" name="title" id="title" value="{{ old('title') }}">

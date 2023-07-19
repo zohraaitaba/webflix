@@ -24,6 +24,7 @@
                     <a class="nav-link active" href="/">Accueil</a>
                     <a class="nav-link" href="/fiorella">Fiorella</a>
                     <a class="nav-link" href="/films">Films</a>
+                    <a class="nav-link" href="/acteurs">Acteurs</a>
                     <a class="nav-link" href="/categories">Catégories</a>
                     <!-- @todo Faire un dropdown -->
                     <!-- <a class="nav-link" href="/fiorella?color=blue">Fiorella bleue</a>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Actor;
 use App\Models\Category;
 use App\Models\Movie;
 use App\Models\User;
@@ -28,6 +29,9 @@ class DatabaseSeeder extends Seeder
             'name'=> 'matthieu',
            
         ]);
+
+        //Acteurs
+        Actor::factory(5)->create();
 
         // Category::factory(5)->create();
         // Category::factory()->create(['name' => 'Action']);
