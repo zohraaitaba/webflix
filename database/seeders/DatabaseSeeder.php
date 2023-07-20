@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //Acteurs
-        Actor::factory(5)->create();
+        Actor::factory(20)->create();
 
         // Category::factory(5)->create();
         // Category::factory()->create(['name' => 'Action']);

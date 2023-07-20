@@ -19,7 +19,7 @@ class ActorFactory extends Factory
         return [
             'name'=> fake()->sentence(3),
             //'avatar' => fake()-> imageUrl(),
-            'avatar'=>'https://picsum.photos/seed/picsum/id/'.rand(0,1064).'/200/300', //400/800 taille image largeur/hauteur
+            'avatar'=>'https://picsum.photos/seed/'.rand(0,1064).'/200/300', //400/800 taille image largeur/hauteur
             'birthday'=> fake()->date(),
         ];
     }

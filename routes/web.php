@@ -48,6 +48,11 @@ Route::delete('/film/{id}', [MovieController::class, 'destroy'])->middleware('au
 //Acteurs
 Route::get('/acteurs', [ActorController::class, 'index']);
 Route::get('/acteurs/{actor}', [ActorController::class, 'show']);
+Route::get('/acteurs/creer', [ActorController::class,'create'])->middleware('auth');
+Route::post('/acteurs/creer', [ActorController::class,'store'])->middleware('auth');
+Route::post('/acteur/{actor}/modifier', [ActorController::class, 'edite'])->middleware('auth');
+Route::put('/acteur/{actor}/modifier', [ActorController::class, 'update'])->middleware('auth');
+Route::delete('/acteur/{id}', [ActorController::class, 'destroy'])->middleware('auth');
 
 //Authentification
 Route::get('/login', [LoginController::class, 'index'])->name('login');
