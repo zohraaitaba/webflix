@@ -18,23 +18,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //Utilisateurs
-        User ::factory()->create([
-            'email' => 'fiorella@boxydev.com',
-            'name'=> 'fiorella',
-           
+        // Utilisateurs
+        User::factory()->create([
+            'email' => 'fiorella@boxydev.com', 'name' => 'Fiorella',
         ]);
-        User ::factory()->create([
-            'email' => 'matthieu@boxydev.com',
-            'name'=> 'matthieu',
-           
+        User::factory()->create([
+            'email' => 'matthieu@boxydev.com', 'name' => 'Matthieu',
         ]);
 
-        //Acteurs
-        Actor::factory(20)->create();
-
+        // ------ VERSION SANS API
+        // Catégories
         // Category::factory(5)->create();
         // Category::factory()->create(['name' => 'Action']);
+
+        // Acteurs
+        // Actor::factory(100)->create();
+
+        // Films
+        // Movie::factory(100)->has(Actor::factory(5))->create(function () {
+            // 100 fois une catégorie aléatoire
+        //     return ['category_id' => Category::all()->random()];
+        // });
+        // ------ VERSION SANS API
 
         // Les catégories sur l'API
         // https://api.themoviedb.org/3/genre/movie/list?api_key=???&language=fr
@@ -56,10 +61,10 @@ class DatabaseSeeder extends Seeder
             $result = Http::get('https://api.themoviedb.org/3/movie/'.$result['id'], [
                 'api_key' => config('services.themoviedb.key'),
                 'language' => 'fr-FR',
-                'append_to_response' => 'videos',
+                'append_to_response' => 'videos,credits',
             ])->throw()->json();
 
-            Movie::factory()->create([
+            $movie = Movie::factory()->create([
                 'title' => $result['title'],
                 'synopsis' => $result['overview'],
                 'duration' => $result['runtime'],
@@ -69,11 +74,28 @@ class DatabaseSeeder extends Seeder
                 'category_id' => $result['genres'][0]['id'] ?? null,
                 'user_id' => User::all()->random(),
             ]);
-        }
 
-        /* Movie::factory(100)->create(function () {
-            // 100 fois une catégorie aléatoire
-            return ['category_id' => Category::all()->random()];
-        }); */
+            $casts = collect($result['credits']['cast'])
+                ->where('known_for_department', 'Acting')
+                ->whereNotNull('profile_path')->take(5);
+
+            foreach ($casts as $cast) {
+                $cast = Http::get('https://api.themoviedb.org/3/person/'.$cast['id'], [
+                    'api_key' => config('services.themoviedb.key'),
+                    'language' => 'fr-FR',
+                ])->throw()->json();
+
+                // Si l'acteur n'existe pas déjà (par rapport à son id), on va le créer
+                // makeOne permet de créer un objet Actor
+                $actor = Actor::factory()->makeOne()->firstOrCreate(['id' => $cast['id']], [
+                    'name' => $cast['name'],
+                    'avatar' => 'https://image.tmdb.org/t/p/w400'.$cast['profile_path'],
+                    'birthday' => $cast['birthday'],
+                ]);
+
+                $movie->actors()->attach($actor); // Lie l'acteur au film
+                // $actor->movies()->attach($movie);
+            }
+        }
     }
 }
