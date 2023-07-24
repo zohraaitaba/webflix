@@ -47,6 +47,15 @@ class Movie extends Model
         );
     }
 
+    public function price(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return $value / 100;
+            }
+        );
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
