@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- la div pour faire de react --}}
+<div id="root"></div>
+
     @if (Auth::user())
         <div class="text-center mb-4">
             <a class="btn btn-primary" href="/films/creer">Créer un film</a>
